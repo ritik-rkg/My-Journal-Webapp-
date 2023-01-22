@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=thePost.title%></title>
+</head>
+<body>
+    <%- include('partials/header2',{title :`${name}`}); -%>
+    <h1><%=thePost.title%></h1>
+    <p>
+        <%=thePost.post%>
+    </p>
+        <div class="deletediv">
+            <form action="/delete" method="POST">
+                <input class="btn btn-primary" type="submit" value="Delete Post">
+                <input type="hidden" name = "deleteButton" value="<%= thePost._id %>">
+            </form>
+        </div>
+        <div class="editdiv">
+            <form action="/editpage" method="POST">
+                <input class="btn btn-primary" type="submit" value="Edit Post">
+                <input type="hidden" name = "editButton" value="<%= thePost._id %>">
+            </form>
+        </div>
+
+    <%- include('partials/footer'); -%>
+</body>
+</html>

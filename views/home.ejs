@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body style="overflow : scroll;">
+    <% if(authenticated===true){ %>
+        <%- include('partials/header2',{title :`${name}`}); -%>
+    <% }else{ %>
+        <%- include('partials/header'); -%>
+    <% }%>
+    <h1>Home</h1>
+    <p><%- content.replaceAll('\n', '<br>') %></p>
+    
+    <p>
+        <% if(authenticated===true){ %>
+            <%for(var i=0;i<posts.length;i++){%>
+                <h1><%=posts[i].title %></h1>
+                <p><%=posts[i].post.substring(0,100)+"..." %>
+                <a href=<%="/posts/" + posts[i]._id %>>Read More</a></p>
+            <%}%>
+        <% }%>
+        
+        <% if(authenticated===true){ %>
+        <form action="/compose" method="GET">
+            <input class="btn btn-primary" type="submit" value="New Entry">
+        </form>
+        <% }%>
+    </p>
+    <!-- <%- include('partials/footer'); -%> -->
+</body>
+</html>
